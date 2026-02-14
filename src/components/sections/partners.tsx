@@ -7,10 +7,12 @@ export function Partners() {
   const partners = Array.from({ length: 8 }).map((_, i) => `Partner ${i + 1}`);
   // Duplicate for seamless loop
   const allPartners = [...partners, ...partners];
-  const sliderRef = useRef(null);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
+      if (!sliderRef.current) return;
+
       const totalWidth = sliderRef.current.scrollWidth / 2;
 
       gsap.to(sliderRef.current, {
